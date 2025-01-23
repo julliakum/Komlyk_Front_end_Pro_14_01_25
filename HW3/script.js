@@ -59,11 +59,11 @@ alert(`Task #4. Entered data:
 let number = prompt("Task #5. Please Enter a FIVE-DIGIT number.");
 
 //Method 1
-let number_1_v1 = number.at(0) % 10;
-let number_2_v1 = number.at(1) % 10;
-let number_3_v1 = number.at(2) % 10;
-let number_4_v1 = number.at(3) % 10;
-let number_5_v1 = number.at(4) % 10;
+let number_1_v1 = parseInt(number.at(0)) % 10;
+let number_2_v1 = parseInt(number.at(1)) % 10;
+let number_3_v1 = parseInt(number.at(2)) % 10;
+let number_4_v1 = parseInt(number.at(3)) % 10;
+let number_5_v1 = parseInt(number.at(4)) % 10;
 
 //Method 2
 let number_1_v2 = parseInt(number / 10000);

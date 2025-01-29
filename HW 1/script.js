@@ -24,7 +24,7 @@ if (!year) {
 if (!city) {
     city = "Sorry, you didn’t want to enter your city.";
 } else if (capitalCities[city]) {
-    city = `You live in the capital of ${capitalCities[city]}.`;
+    city = `You live in the capital of ${capitalCities[city]} in ${city}.`;
 } else {
     city = "You live in a very beautiful city!";
 }

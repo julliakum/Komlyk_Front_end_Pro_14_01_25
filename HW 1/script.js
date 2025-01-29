@@ -26,7 +26,7 @@ if (!city) {
 } else if (capitalCities[city]) {
     city = `You live in the capital of ${capitalCities[city]} in ${city}.`;
 } else {
-    city = "You live in a very beautiful city!";
+    city = `You live in ${city} city.`;
 }
 
 if (!sport) {

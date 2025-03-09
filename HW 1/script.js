@@ -23,7 +23,7 @@ console.log(sumFunction(20));
 // Створити функцію, яка вираховує середнє арифметичне лише числових елементів даного масиву.
 
 function averageOfNumbers(arr) {
-    let numbers = arr.filter(item => typeof item === 'number');
+    let numbers = arr.filter(item => Number.isFinite(item));
     if (numbers.length === 0) return 0;
     let sum = numbers.reduce((acc, num) => acc + num, 0);
     return sum / numbers.length;

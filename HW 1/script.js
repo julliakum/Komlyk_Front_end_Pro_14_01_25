@@ -42,17 +42,17 @@ function callNumber(phoneNumber) {
 
 const cachedCallNumber = cacheFunction(callNumber);
 
-console.log(cachedCallNumber("+1234567890")); // number 1
-console.log(cachedCallNumber("+3736352727")); // number 2
-console.log(cachedCallNumber("+0985784321")); // number 3
-console.log(cachedCallNumber("+0746454321")); // number 4
-console.log(cachedCallNumber("+0987655856")); // number 5
-console.log(cachedCallNumber("+0987657733")); // number 6
-console.log(cachedCallNumber("+0865763521")); // number 7
-console.log(cachedCallNumber("+0987655677")); // number 8
-console.log(cachedCallNumber("+3453456674")); // number 9
-console.log(cachedCallNumber("+0934654321")); // number 10
-console.log(cachedCallNumber("+3455654321")); // number 11
+console.log(cachedCallNumber("+1111111111")); // number 1
+console.log(cachedCallNumber("+2222222222")); // number 2
+console.log(cachedCallNumber("+1111111111")); // number 3
+console.log(cachedCallNumber("+3333333333")); // number 4
+console.log(cachedCallNumber("+4444444444")); // number 5
+console.log(cachedCallNumber("+5555555555")); // number 6
+console.log(cachedCallNumber("+6666666666")); // number 7
+console.log(cachedCallNumber("+7777777777")); // number 8
+console.log(cachedCallNumber("+8888888888")); // number 9
+console.log(cachedCallNumber("+9999999999")); // number 10
+console.log(cachedCallNumber("+1111100000")); // number 11
 console.log(cachedCallNumber("+1234567890")); // number 12
 
 console.log("Final cache:", cachedCallNumber.getCache());

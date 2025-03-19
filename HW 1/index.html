@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- <link rel="stylesheet" href="./style.css" /> -->
-        <title>HW</title>
-        <script defer src="./script.js"></script>
-      </head>
-        <body>
-        <h1>Hello world!</h1>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="./script.js"></script>
+    <title>HW</title>
+  </head>
+  <body>
+    <h1>Hello world!</h1>
+    <div class="container">
+      <input type="text" class="field-wrapper input-field" placeholder="Click here..." />
+      <div class="field-wrapper info-box">This is some information.</div>
+    </div>
+    <div class="container">
+      <button class="field-wrapper" id="set-link">Enter Link</button>
+      <button class="field-wrapper" id="go-link">Go to Link</button>
+    </div>
+    <div class="container">
+      <table class="dynamic-table"></table>
+    </div>
+    <div class="container image-container">
+      <img id="random-image" class="random-image" src="" alt="Random Image" />
+    </div>
+  </body>
 </html>

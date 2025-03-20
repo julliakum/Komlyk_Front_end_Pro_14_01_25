@@ -1,0 +1,15 @@
+.wrapper {
+    margin: 20px;
+    padding: 20px;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+li {
+    font-size: 18px;
+    padding: 5px 0;
+    position: relative;
+}
+

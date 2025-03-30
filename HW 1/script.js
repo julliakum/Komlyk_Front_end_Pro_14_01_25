@@ -1,9 +1,9 @@
 console.log('Hello world!');
 
-document.getElementById("registrationForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+document.getElementById("registrationForm").addEventListener("submit", function(event) {
+    event.preventDefault();
   
-    const form = e.target;
+    const form = event.target;
     const formData = new FormData(form);
   
     const languages = [];

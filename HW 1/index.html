@@ -1,13 +1,54 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- <link rel="stylesheet" href="./style.css" /> -->
-        <title>HW</title>
-        <script defer src="./script.js"></script>
-      </head>
-        <body>
-        <h1>Hello world!</h1>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>HW 25 - Store</title>
+    <script defer src="./script.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left">
+        <h2>Категорії</h2>
+        <ul id="categories"></ul>
+      </div>
+      <div class="middle">
+        <h2>Товари</h2>
+        <ul id="products"></ul>
+      </div>
+      <div class="right">
+        <div id="product-details"></div>
+        <div id="buy-button-wrapper"></div>
+        <div id="order-section" class="hidden">
+          <form id="order-form">
+            <h4>Оформлення замовлення</h4>
+            <label>ПІБ: <input type="text" id="name" required></label>
+            <label>Місто:
+              <select id="city" required>
+                <option value="">Оберіть місто</option>
+                <option>Київ</option>
+                <option>Львів</option>
+                <option>Харків</option>
+                <option>Дніпро</option>
+                <option>Одеса</option>
+              </select>
+            </label>
+            <label>Склад Нової пошти: <input type="text" id="warehouse" required></label>
+            <label>Оплата:
+              <select id="payment" required>
+                <option value="">Оберіть спосіб оплати</option>
+                <option>Післяплата</option>
+                <option>Банківська картка</option>
+              </select>
+            </label>
+            <label>Кількість: <input type="number" id="quantity" min="1" value="1" required></label>
+            <label>Коментар: <textarea id="comment"></textarea></label>
+            <button type="submit">Підтвердити замовлення</button>
+          </form>
+          <div id="order-result"></div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

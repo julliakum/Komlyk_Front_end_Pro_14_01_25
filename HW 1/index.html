@@ -1,13 +1,72 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- <link rel="stylesheet" href="./style.css" /> -->
-        <title>HW</title>
-        <script defer src="./script.js"></script>
-      </head>
-        <body>
-        <h1>Hello world!</h1>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>HW</title>
+    <script defer src="./script.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Форма реєстрації</h1>
+      <form id="registrationForm">
+        <label>Ім'я: <input type="text" name="firstName" required /></label>
+        <label>Прізвище: <input type="text" name="lastName" required /></label>
+        <label
+          >Дата народження: <input type="date" name="dob" required
+        /></label>
+
+        <div class="gender">
+          <span>Стать:</span>
+          <label
+            ><input type="radio" name="gender" value="Чоловіча" required />
+            Чоловіча</label
+          >
+          <label
+            ><input type="radio" name="gender" value="Жіноча" /> Жіноча</label
+          >
+        </div>
+
+        <label
+          >Місто:
+          <select name="city" required>
+            <option value="">-- Оберіть місто --</option>
+            <option value="Київ">Київ</option>
+            <option value="Львів">Львів</option>
+            <option value="Харків">Харків</option>
+            <option value="Одеса">Одеса</option>
+          </select>
+        </label>
+
+        <label
+          >Адреса: <textarea name="address" rows="3" required></textarea>
+        </label>
+
+        <fieldset>
+          <legend>Мови, якими володієте:</legend>
+          <label
+            ><input type="checkbox" name="languages" value="Українська" />
+            Українська</label
+          >
+          <label
+            ><input type="checkbox" name="languages" value="Англійська" />
+            Англійська</label
+          >
+          <label
+            ><input type="checkbox" name="languages" value="Німецька" />
+            Німецька</label
+          >
+          <label
+            ><input type="checkbox" name="languages" value="Французька" />
+            Французька</label
+          >
+        </fieldset>
+
+        <button type="submit">Зберегти</button>
+      </form>
+
+      <div id="result"></div>
+    </div>
+  </body>
 </html>

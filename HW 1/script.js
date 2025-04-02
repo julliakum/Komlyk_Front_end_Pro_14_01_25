@@ -67,6 +67,9 @@ function renderDetails(product) {
   buyButtonWrapper.innerHTML = `<button id="buy-button">Купити</button>`;
   document.getElementById("order-section").classList.add("hidden");
 
+  document.getElementById("order-form").classList.remove("hidden");
+  buyButtonWrapper.classList.remove("hidden");
+
   document.getElementById("buy-button").addEventListener("click", buyProduct);
   rightPanel.style.display = "block";
 }
@@ -127,4 +130,122 @@ document.getElementById("order-form").addEventListener("submit", function (e) {
   `;
 
   document.getElementById("order-form").classList.add("hidden");
+});
+
+
+
+const categoriesTitle = document.querySelector(".categories-details h2");
+const myOrdersBtn = document.getElementById("my-orders-btn");
+const ordersListWrapper = document.getElementById("orders-list-wrapper");
+
+myOrdersBtn.addEventListener("click", () => {
+  const isOrdersVisible = ordersListWrapper.classList.contains("hidden") === false;
+  
+  categoriesContainer.classList.toggle("hidden");
+  categoriesTitle.style.display = isOrdersVisible ? "block" : "none";
+  middlePanel.style.display = "none";
+  rightPanel.style.display = "none";
+  ordersListWrapper.classList.toggle("hidden");
+
+  if (!ordersListWrapper.classList.contains("hidden")) {
+    renderOrders();
+  }
+});
+
+
+function saveOrder(order) {
+  const orders = JSON.parse(localStorage.getItem("orders")) || [];
+  orders.push(order);
+  localStorage.setItem("orders", JSON.stringify(orders));
+}
+
+function renderOrders() {
+  const orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+  if (!orders.length) {
+    ordersListWrapper.innerHTML = "<p>Замовлення відсутні.</p>";
+    return;
+  }
+
+  const list = document.createElement("ul");
+
+  orders.forEach((order, index) => {
+    const item = document.createElement("li");
+    item.classList.add("order-item");
+
+    item.innerHTML = `
+      <div class="order-header">
+        <span><strong>${new Date(order.date).toLocaleString()}</strong>: ${order.productName} - ${order.total} грн.</span>
+        <button class="delete-order" data-index="${index}">Видалити</button>
+      </div>
+      <div class="order-details hidden">
+        <p><strong>Ціна за одиницю:</strong> ${order.productPrice} грн.</p>
+        <p><strong>Кількість:</strong> ${order.quantity}</p>
+        <p><strong>ПІБ:</strong> ${order.name}</p>
+        <p><strong>Місто:</strong> ${order.city}</p>
+        <p><strong>Склад Нової пошти:</strong> ${order.warehouse}</p>
+        <p><strong>Оплата:</strong> ${order.payment}</p>
+        <p><strong>Коментар:</strong> ${order.comment || "(немає)"}</p>
+      </div>
+    `;
+
+    item.querySelector(".order-header").addEventListener("click", () => {
+      item.querySelector(".order-details").classList.toggle("hidden");
+    });
+
+    item.querySelector(".delete-order").addEventListener("click", (e) => {
+      e.stopPropagation();
+      deleteOrder(index);
+    });
+
+    list.appendChild(item);
+  });
+
+  ordersListWrapper.innerHTML = "";
+  ordersListWrapper.appendChild(list);
+}
+
+function deleteOrder(index) {
+  const orders = JSON.parse(localStorage.getItem("orders")) || [];
+  orders.splice(index, 1);
+  localStorage.setItem("orders", JSON.stringify(orders));
+  renderOrders();
+}
+
+
+document.getElementById("order-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const city = document.getElementById("city").value;
+  const warehouse = document.getElementById("warehouse").value.trim();
+  const payment = document.getElementById("payment").value;
+  const quantity = parseInt(document.getElementById("quantity").value);
+  const comment = document.getElementById("comment").value.trim();
+
+  if (!name || !city || !warehouse || !payment || quantity < 1) {
+    document.getElementById("order-result").textContent =
+      "Будь ласка, заповніть всі обов'язкові поля.";
+    return;
+  }
+
+  const productName = document.querySelector("#product-details h3")?.textContent || "";
+  const priceText = document.querySelector("#product-details p:nth-of-type(2)")?.textContent || "";
+  const productPrice = parseInt(priceText.replace(/\D/g, ""));
+  const total = productPrice * quantity;
+
+  const order = {
+    date: new Date().toISOString(),
+    productName,
+    productPrice,
+    quantity,
+    total,
+    name,
+    city,
+    warehouse,
+    payment,
+    comment,
+  };
+
+  saveOrder(order);
 });

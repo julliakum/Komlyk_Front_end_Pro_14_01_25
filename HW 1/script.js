@@ -95,8 +95,8 @@ function resetView() {
 
 renderCategories();
 
-document.getElementById("order-form").addEventListener("submit", function (e) {
-  e.preventDefault();
+document.getElementById("order-form").addEventListener("submit", function (event) {
+  event.preventDefault();
 
   const name = document.getElementById("name").value.trim();
   const city = document.getElementById("city").value;
@@ -193,8 +193,8 @@ function renderOrders() {
       item.querySelector(".order-details").classList.toggle("hidden");
     });
 
-    item.querySelector(".delete-order").addEventListener("click", (e) => {
-      e.stopPropagation();
+    item.querySelector(".delete-order").addEventListener("click", (event) => {
+      event.stopPropagation();
       deleteOrder(index);
     });
 
@@ -213,8 +213,8 @@ function deleteOrder(index) {
 }
 
 
-document.getElementById("order-form").addEventListener("submit", function (e) {
-  e.preventDefault();
+document.getElementById("order-form").addEventListener("submit", function (event) {
+  event.preventDefault();
 
   const name = document.getElementById("name").value.trim();
   const city = document.getElementById("city").value;

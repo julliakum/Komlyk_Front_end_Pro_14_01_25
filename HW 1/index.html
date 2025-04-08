@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- <link rel="stylesheet" href="./style.css" /> -->
-        <title>HW</title>
-        <script defer src="./script.js"></script>
-      </head>
-        <body>
-        <h1>Hello world!</h1>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>HW 27</title>
+    <script defer src="./script.js"></script>
+  </head>
+  <body>
+    <h1 class="title">Список користувачів</h1>
+    <div class="user-list"></div>
+    <div class="user-details"></div>
+
+    <h2 class="form-title">Додати користувача</h2>
+    <form class="user-form">
+      <input type="hidden" class="user-id" />
+      <label>Ім'я: <input type="text" class="name-input" required /></label>
+      <label>Email: <input type="email" class="email-input" required /></label>
+      <button type="submit">Зберегти</button>
+    </form>
+  </body>
 </html>

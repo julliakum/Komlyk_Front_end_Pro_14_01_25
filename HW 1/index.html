@@ -1,13 +1,37 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- <link rel="stylesheet" href="./style.css" /> -->
-        <title>HW</title>
-        <script defer src="./script.js"></script>
-      </head>
-        <body>
-        <h1>Hello world!</h1>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>HW 28</title>
+    <script defer src="./script.js"></script>
+  </head>
+  <body>
+    <h1>Сутності людини та автомобіля</h1>
+
+    <form class="form">
+      <fieldset class="person-block">
+        <legend>Людина</legend>
+        <label>Ім’я: <input type="text" class="input-name" required /></label>
+        <label>Вік: <input type="number" class="input-age" required /></label>
+      </fieldset>
+
+      <fieldset class="car-block">
+        <legend>Автомобіль</legend>
+        <label>Марка: <input type="text" class="input-make" required /></label>
+        <label
+          >Модель: <input type="text" class="input-model" required
+        /></label>
+        <label
+          >Рік випуску: <input type="number" class="input-year" required
+        /></label>
+        <label>Колір: <input type="text" class="input-color" required /></label>
+      </fieldset>
+
+      <button type="submit" class="submit-btn">Створити</button>
+    </form>
+
+    <div class="result"></div>
+  </body>
 </html>

@@ -1,13 +1,37 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- <link rel="stylesheet" href="./style.css" /> -->
-        <title>HW</title>
-        <script defer src="./script.js"></script>
-      </head>
-        <body>
-        <h1>Hello world!</h1>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>HW</title>
+    <script defer src="./script.js"></script>
+  </head>
+  <body>
+    <h1>Додати будинок</h1>
+    <form id="house-form">
+      <label>
+        Номер будинку:
+        <input type="text" id="house-number" required />
+      </label>
+      <label>
+        Кількість квартир:
+        <input type="number" id="num-apartments" required />
+      </label>
+      <label>
+        Кількість мешканців у кожній квартирі:
+        <input type="number" id="num-residents" required />
+      </label>
+      <button type="submit">Створити будинок</button>
+    </form>
+
+    <div id="apartment-forms"></div>
+    <div id="resident-forms"></div>
+    
+    <button id="show-house-btn" style="display: none">
+      Вивести дані про будинок
+    </button>
+
+    <div id="output"></div>
+  </body>
 </html>

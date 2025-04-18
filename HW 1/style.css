@@ -1,0 +1,14 @@
+#clock {
+  display: flex;
+  align-items: center;
+  font-size: 50px;
+}
+
+.unit {
+  display: flex;
+}
+
+.unit img {
+  width: 60px;
+  height: auto;
+}

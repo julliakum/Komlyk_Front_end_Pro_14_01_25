@@ -1,0 +1,23 @@
+{
+  "name": "temp",
+  "version": "1.0.0",
+  "description": "Hello",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/julliakum/Front-end-Pro.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/julliakum/Front-end-Pro/issues"
+  },
+  "homepage": "https://github.com/julliakum/Front-end-Pro#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.5",
+    "moment": "^2.30.1"
+  }
+}

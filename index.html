@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>HW 36</title>
+  </head>
+  <body>
+    <div class="wrapper-bootstrap-p1 m-5">
+      <button
+        type="button"
+        class="btn btn-light btn-outline-dark btn-lg"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        data-bs-placement="top"
+        data-bs-custom-class="custom-tooltip"
+        title="Click here to open the form"
+      >
+        Launch demo modal
+      </button>
+
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Submit Your Feedback
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"
+                  >Your Email Address</label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="exampleFormControlInput1"
+                  placeholder="name@example.com"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label"
+                  >Write your comments or questions here...</label
+                >
+                <textarea
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="formFileMultiple" class="form-label"
+                  >Attach files (Optional)</label
+                >
+                <input
+                  class="form-control"
+                  type="file"
+                  id="formFileMultiple"
+                  multiple
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrapper-bootstrap-p2 m-5">
+      <button
+        id="toggleAlertBtn"
+        type="button"
+        class="btn btn-outline-info btn-lg mb-3"
+      >
+        Info - Toggle Alert
+      </button>
+      <div id="toggleAlertPlaceholder" class="mt-3"></div>
+
+      <button
+        id="autoHideAlertBtn"
+        type="button"
+        class="btn btn-dark btn-outline-warning btn-lg"
+      >
+        Warning - Auto-Hide Alert
+      </button>
+      <div id="autoHideAlertPlaceholder" class="mt-3"></div>
+    </div>
+
+    <div class="wrapper-moment-p1 m-5">
+      <div class="d-flex align-items-center gap-3">
+        <div class="text-success-emphasis fw-bold fs-4">My Birthday:</div>
+        <div
+          id="my-birthday"
+          class="border border-success rounded-3 p-3 fs-5"
+        ></div>
+      </div>
+    </div>
+
+    <div class="wrapper-moment-p2 m-5">
+      <h2 class="mb-4">Enter your birthday:</h2>
+      <div class="mb-3">
+        <input
+          type="text"
+          id="birthdayInput"
+          class="form-control"
+          placeholder="e.g., 12/31/2024"
+        />
+      </div>
+      <button id="convertButton" class="btn btn-primary">Convert Date</button>
+
+      <div id="result" class="mt-4"></div>
+    </div>
+
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="node_modules/moment/min/moment.min.js"></script>
+    <script src="node_modules/moment/locale/uk.js"></script>
+    <script>
+      //   Alerts
+      const alertList = document.querySelectorAll(".alert");
+      const alerts = [...alertList].map(
+        (element) => new bootstrap.Alert(element)
+      );
+
+      //   Tooltip
+      const tooltipTriggerList = document.querySelectorAll(
+        "[data-bs-placement]"
+      );
+      const tooltipList = [...tooltipTriggerList].map(
+        (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
+      );
+
+      //   Submit modal
+      const submitButton = document.querySelector(".btn.btn-primary");
+      const modalElement = document.getElementById("exampleModal");
+      const modal =
+        bootstrap.Modal.getInstance(modalElement) ||
+        new bootstrap.Modal(modalElement);
+
+      submitButton.addEventListener("click", () => {
+        modal.hide();
+      });
+
+      // Alerts
+      // Toggle alert
+      const toggleAlertBtn = document.getElementById("toggleAlertBtn");
+      const toggleAlertPlaceholder = document.getElementById(
+        "toggleAlertPlaceholder"
+      );
+      let alertVisible = false;
+
+      toggleAlertBtn.addEventListener("click", () => {
+        if (!alertVisible) {
+          const alertHtml = `
+            <div class="alert alert-info alert-dismissible fade show" role="alert" id="dynamicAlert">
+              A simple info alert — check it out!
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          `;
+          toggleAlertPlaceholder.insertAdjacentHTML("beforeend", alertHtml);
+          alertVisible = true;
+        } else {
+          const existingAlert = document.getElementById("dynamicAlert");
+          if (existingAlert) {
+            const bsAlert = bootstrap.Alert.getOrCreateInstance(existingAlert);
+            bsAlert.close();
+          }
+          alertVisible = false;
+        }
+      });
+
+      // Auto-Hide Alert
+      const autoHideAlertBtn = document.getElementById("autoHideAlertBtn");
+      const autoHideAlertPlaceholder = document.getElementById(
+        "autoHideAlertPlaceholder"
+      );
+
+      autoHideAlertBtn.addEventListener("click", () => {
+        const alertHtml = `
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            An auto-hiding warning alert!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        `;
+        autoHideAlertPlaceholder.insertAdjacentHTML("beforeend", alertHtml);
+
+        const alerts = autoHideAlertPlaceholder.querySelectorAll(".alert");
+        const newAlert = alerts[alerts.length - 1];
+
+        setTimeout(() => {
+          const bsAlert = bootstrap.Alert.getOrCreateInstance(newAlert);
+          bsAlert.close();
+        }, 3000);
+      });
+
+      //   Moment - My birthday
+      moment.locale("uk");
+
+      const birthday = moment("1999-02-15 12:00");
+      const birthdayElement = document.getElementById("my-birthday");
+
+      birthdayElement.textContent = birthday.format("llll");
+
+      //   Moment - Your birthday
+      moment.locale("en");
+
+      const convertButton = document.getElementById("convertButton");
+      const birthdayInput = document.getElementById("birthdayInput");
+      const result = document.getElementById("result");
+
+      convertButton.addEventListener("click", () => {
+        const userInput = birthdayInput.value.trim();
+        result.innerHTML = "";
+
+        if (userInput === "") {
+          result.innerHTML = `
+          <div class="alert alert-warning" role="alert">
+            Please enter your birthday before converting!
+          </div>
+        `;
+          return;
+        }
+
+        const dateRegex =
+          /^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/(19\d{2}|200\d|201\d|202[0-5])$/;
+
+        if (!dateRegex.test(userInput)) {
+          result.innerHTML = `
+          <div class="alert alert-danger" role="alert">
+            Wrong format! Please use "MM/DD/YYYY", e.g., 12/31/2024.
+          </div>
+        `;
+          return;
+        }
+
+        const parsedDate = moment(userInput, "MM/DD/YYYY", true);
+
+        if (!parsedDate.isValid()) {
+          result.innerHTML = `
+          <div class="alert alert-danger" role="alert">
+            Invalid date! Please enter a real existing date.
+          </div>
+        `;
+          return;
+        }
+
+        const formattedDate = parsedDate.format("MMMM Do YYYY");
+
+        result.innerHTML = `
+          <div class="alert alert-success" role="alert">
+            Formatted date: <strong>${formattedDate}</strong>
+          </div>
+        `;
+      });
+    </script>
+  </body>
+</html>

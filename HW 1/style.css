@@ -2,12 +2,10 @@ body {
   font-family: Arial, sans-serif;
   padding: 20px;
 }
-
-.title {
+body .title {
   margin-bottom: 10px;
 }
-
-.dialog-window {
+body .dialog-window {
   border: 1px solid #ccc;
   background: #fff;
   padding: 10px;
@@ -16,20 +14,17 @@ body {
   margin-bottom: 15px;
   border-radius: 5px;
 }
-
-.input-area {
+body .input-area {
   display: flex;
   gap: 10px;
 }
-
-.message-input {
+body .input-area .message-input {
   flex: 1;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-
-.send-button {
+body .input-area .send-button {
   padding: 8px 16px;
   background-color: #007bff;
   color: white;
@@ -37,16 +32,12 @@ body {
   border-radius: 4px;
   cursor: pointer;
 }
-
-.send-button:hover {
+body .input-area .send-button:hover {
   background-color: #0056b3;
 }
-
-p {
+body p {
   margin: 5px 0;
 }
-
-strong {
+body strong {
   color: #333;
-}
-  
+}/*# sourceMappingURL=style.css.map */

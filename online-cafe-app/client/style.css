@@ -42,23 +42,29 @@ body {
   background-color: #1c1c1c;
   color: #fff;
 }
+
 .modal-header, .modal-body {
   background-color: #1c1c1c;
   color: #fff;
 }
-.form-check-label {
-  color: #fff;
-}
-.form-label {
-  color: #ffc107;
-}
-.btn-close {
-  filter: invert(1);
-}
+
 .modal-title {
   font-weight: bold;
   font-size: 1.3rem;
 }
+
+.form-check-label {
+  color: #fff;
+}
+
+.form-label {
+  color: #ffc107;
+}
+
+.btn-close {
+  filter: invert(1);
+}
+
 .btn-cart {
   background-color: #ffc107;
   color: #000;

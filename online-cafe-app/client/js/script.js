@@ -41,7 +41,6 @@ const categoriesData = {
             description: 'Курячий бургер з сиром Моцарела, соусом \"Медово-гірчичний\" і свіжим яблуком',
             ingredients: ['курка', 'сир Моцарела', 'яблуко'],
             sauces: ['Картопля фрі (+40 ₴)', 'Соус Дорблю (+25 ₴)'],
-            addons: [{ name: 'Картопля фрі (+40 ₴)', price: 40 }]
         },
         {
             id: 5,
@@ -52,7 +51,6 @@ const categoriesData = {
             description: 'Яловичий бургер з сиром, салатом, огірком і цибулею',
             ingredients: ['котлета', 'салат', 'огірок', 'цибуля'],
             sauces: ['Картопля фрі (+40 ₴)', 'Соус Дорблю (+25 ₴)'],
-            addons: [{ name: 'Картопля фрі (+40 ₴)', price: 40 }]
         },
         {
             id: 6,
@@ -63,7 +61,6 @@ const categoriesData = {
             description: 'З куркою в клярі, халапеньо, сиром, салатом Айсберг та соусом Барбекю',
             ingredients: ['курка', 'халапеньо', 'сир', 'салат Айсберг'],
             sauces: ['Картопля фрі (+40 ₴)', 'Соус Дорблю (+25 ₴)'],
-            addons: [{ name: 'Картопля фрі (+40 ₴)', price: 40 }]
         }
     ],
     'Десерти': [
@@ -279,12 +276,22 @@ function removeFromCart(index) {
 }
 
 function submitOrder() {
-    console.log('Замовлення:', cart);
-    alert('Замовлення відправлено!');
-    cart = [];
-    updateCartDisplay();
-    document.getElementById('cart').classList.add('d-none');
+  fetch('/api/orders', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(cart)
+  })
+    .then(res => res.json())
+    .then(data => {
+      alert('Замовлення відправлено!');
+      cart = [];
+      updateCartDisplay();
+      document.getElementById('cart').classList.add('d-none');
+    })
+    .catch(err => {
+      alert('Помилка надсилання замовлення.');
+      console.error(err);
+    });
 }
 
-// Ініціалізація
 renderCategories();

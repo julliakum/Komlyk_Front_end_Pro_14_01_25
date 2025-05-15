@@ -11,7 +11,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://127.0.0.1:5500'
+}));
 app.use(express.json());
 const filePath = path.join(__dirname, 'controllers', 'orders.json');
 
@@ -52,6 +54,31 @@ app.get('/orders', (req, res) => {
     }
   });
 });
+
+app.delete('/orders/:index', (req, res) => {
+  const index = parseInt(req.params.index);
+
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) return res.status(500).json({ message: 'Помилка при читанні файлу' });
+
+    let orders = JSON.parse(data);
+
+    if (index < 0 || index >= orders.length) {
+      return res.status(404).json({ message: 'Замовлення не знайдено' });
+    }
+
+    orders.splice(index, 1);
+
+    fs.writeFile(filePath, JSON.stringify(orders, null, 2), err => {
+      if (err) {
+        console.error('Помилка запису:', err);
+        return res.status(500).json({ message: 'Помилка сервера' });
+      }
+      res.status(200).json({ message: 'Замовлення видалено' });
+    });
+  });
+});
+
 
 app.listen(port, () => {
   console.log(`Сервер запущено на http://localhost:${port}`);

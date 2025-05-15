@@ -138,11 +138,17 @@ window.removeFromCart = function (index) {
 };
 
 window.submitOrder = function () {
-  console.log('Замовлення:', cart);
+  const order = {
+    items: cart,
+    totalPrice: cart.reduce((sum, item) => sum + item.totalPrice, 0),
+  };
+
+  console.log('Замовлення:', order);
+
   fetch('http://localhost:3000/order', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(cart)
+    body: JSON.stringify(order)
   })
     .then(response => response.json())
     .then(data => {
@@ -189,16 +195,27 @@ window.loadOrders = function () {
         return;
       }
 
-      ordersList.innerHTML = data.map((order, i) => `
-        <div class="border-bottom pb-2 mb-2">
-          <strong>Замовлення ${i + 1}:</strong><br>
-          Назва: ${order.name}<br>
-          Кількість: ${order.quantity}<br>
-          Інгредієнти: ${order.ingredients.join(', ') || 'немає'}<br>
-          Додатково: ${order.additions.join(', ') || 'немає'}<br>
-          Ціна: ${order.totalPrice} ₴
-        </div>
-      `).join('');
+      ordersList.innerHTML = data.map((order, i) => {
+        const itemsHTML = order.items.map(item => `
+          Назва: ${item.name}<br>
+          Кількість: ${item.quantity}<br>
+          Інгредієнти: ${item.ingredients.join(', ') || 'немає'}<br>
+          Додатково: ${item.additions.join(', ') || 'немає'}<br>
+          Ціна: ${item.totalPrice} ₴
+          <hr>
+        `).join('');
+
+        const total = order.items.reduce((sum, item) => sum + item.totalPrice, 0);
+
+        return `
+          <div class="border-bottom pb-2 mb-2">
+            <strong>Замовлення ${i + 1}:</strong><br>
+            ${itemsHTML}
+            <strong>Загальна сума: ${total} ₴</strong><br>
+            <button class="btn btn-sm btn-danger mt-2" onclick="confirmDelete(${i})">Видалити</button>
+          </div>
+        `;
+      }).join('');
     })
     .catch(err => {
       ordersList.innerHTML = '<p class="text-danger">Помилка завантаження замовлень.</p>';
@@ -208,3 +225,23 @@ window.loadOrders = function () {
   bootstrap.Modal.getOrCreateInstance(document.getElementById('ordersModal')).show();
 };
 
+window.deleteOrder = function(index) {
+  fetch(`http://localhost:3000/orders/${index}`, {
+    method: 'DELETE',
+  })
+    .then(res => res.json())
+    .then(data => {
+      alert(data.message);
+      loadOrders();
+    })
+    .catch(err => {
+      console.error('Помилка видалення:', err);
+      alert('Помилка при видаленні замовлення.');
+    });
+};
+
+window.confirmDelete = function (index) {
+  if (confirm('Ви впевнені, що хочете видалити це замовлення?')) {
+    deleteOrder(index);
+  }
+};

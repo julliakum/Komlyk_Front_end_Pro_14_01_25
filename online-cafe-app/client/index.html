@@ -19,17 +19,24 @@
       <!-- Категорії -->
       <div class="d-flex justify-content-between align-items-center mb-4">
         <div id="categories" class="btn-group flex-wrap"></div>
-        <button
-          class="btn btn-warning position-relative"
-          onclick="toggleCart()"
-        >
-          🛒 Кошик
-          <span
-            id="cart-count"
-            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark text-white"
-            >0</span
+
+        <div class="d-flex align-items-center gap-2">
+          <button class="btn btn-warning" onclick="loadOrders()">
+            📦 Мої замовлення
+          </button>
+
+          <button
+            class="btn btn-warning position-relative"
+            onclick="toggleCart()"
           >
-        </button>
+            🛒 Кошик
+            <span
+              id="cart-count"
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark text-white"
+              >0</span
+            >
+          </button>
+        </div>
       </div>
 
       <!-- Назва категорії -->
@@ -118,6 +125,26 @@
                 </form>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Модальне вікно для замовлень -->
+    <div class="modal fade" id="ordersModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content bg-dark text-white">
+          <div class="modal-header">
+            <h5 class="modal-title">Ваші замовлення</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body" id="ordersList">
+            <p>Завантаження...</p>
           </div>
         </div>
       </div>

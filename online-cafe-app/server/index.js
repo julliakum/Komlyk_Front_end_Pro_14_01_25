@@ -10,16 +10,17 @@ const port = 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// 🔥 Додаємо ці два middleware
-app.use(cors());
-app.use(express.json()); // <-- Обов’язково для обробки JSON-тіла
 
-// Маршрут для прийому замовлень
+app.use(cors());
+app.use(express.json());
+const filePath = path.join(__dirname, 'controllers', 'orders.json');
+
+
 app.post('/order', (req, res) => {
   const order = req.body;
-  console.log('Замовлення отримано:', order); // тут має бути масив з об'єктами
+  console.log('Замовлення отримано:', order);
 
-  // Зберегти у файл
+
   const filePath = path.join(__dirname, 'controllers', 'orders.json');
   fs.readFile(filePath, 'utf8', (err, data) => {
     const orders = data ? JSON.parse(data) : [];
@@ -32,6 +33,23 @@ app.post('/order', (req, res) => {
         res.status(200).json({ message: 'Замовлення прийнято!' });
       }
     });
+  });
+});
+
+app.get('/orders', (req, res) => {
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Помилка при читанні файлу:', err);
+      return res.status(500).json({ message: 'Не вдалося завантажити замовлення' });
+    }
+
+    try {
+      const orders = JSON.parse(data);
+      res.status(200).json(orders);
+    } catch (parseErr) {
+      console.error('Помилка при розборі JSON:', parseErr);
+      res.status(500).json({ message: 'Помилка формату даних' });
+    }
   });
 });
 

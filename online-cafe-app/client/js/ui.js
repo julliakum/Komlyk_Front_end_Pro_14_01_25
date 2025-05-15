@@ -176,3 +176,35 @@ export function setupFormHandlers() {
     bootstrap.Modal.getOrCreateInstance(document.getElementById('editModal')).hide();
   };
 }
+
+window.loadOrders = function () {
+  const ordersList = document.getElementById('ordersList');
+  ordersList.innerHTML = '<p>Завантаження...</p>';
+
+  fetch('http://localhost:3000/orders')
+    .then(res => res.json())
+    .then(data => {
+      if (data.length === 0) {
+        ordersList.innerHTML = '<p>У вас ще немає замовлень.</p>';
+        return;
+      }
+
+      ordersList.innerHTML = data.map((order, i) => `
+        <div class="border-bottom pb-2 mb-2">
+          <strong>Замовлення ${i + 1}:</strong><br>
+          Назва: ${order.name}<br>
+          Кількість: ${order.quantity}<br>
+          Інгредієнти: ${order.ingredients.join(', ') || 'немає'}<br>
+          Додатково: ${order.additions.join(', ') || 'немає'}<br>
+          Ціна: ${order.totalPrice} ₴
+        </div>
+      `).join('');
+    })
+    .catch(err => {
+      ordersList.innerHTML = '<p class="text-danger">Помилка завантаження замовлень.</p>';
+      console.error('Помилка завантаження:', err);
+    });
+
+  bootstrap.Modal.getOrCreateInstance(document.getElementById('ordersModal')).show();
+};
+

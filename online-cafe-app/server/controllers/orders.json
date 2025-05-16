@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "items": [
+      {
+        "name": "Чізкейк Орео",
+        "price": 133,
+        "ingredients": [
+          "ванільне морозиво"
+        ],
+        "additions": [],
+        "quantity": 1,
+        "totalPrice": 133
+      }
+    ],
+    "totalPrice": 133
+  }
+]

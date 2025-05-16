@@ -145,7 +145,7 @@ window.submitOrder = function () {
 
   console.log('Замовлення:', order);
 
-  fetch('http://localhost:3000/order', {
+  fetch('/order', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(order)
@@ -187,7 +187,7 @@ window.loadOrders = function () {
   const ordersList = document.getElementById('ordersList');
   ordersList.innerHTML = '<p>Завантаження...</p>';
 
-  fetch('http://localhost:3000/orders')
+  fetch('/orders')
     .then(res => res.json())
     .then(data => {
       if (data.length === 0) {
@@ -226,7 +226,7 @@ window.loadOrders = function () {
 };
 
 window.deleteOrder = function(index) {
-  fetch(`http://localhost:3000/orders/${index}`, {
+  fetch(`/orders/${index}`, {
     method: 'DELETE',
   })
     .then(res => res.json())

@@ -1,3 +1,16 @@
+import carbonaraImg from '../assets/main_dishes/carbonara.png';
+import rizotoImg from '../assets/main_dishes/rizoto.png';
+import sobaImg from '../assets/main_dishes/lapsha_sobo.png';
+
+import burgerKentukiImg from '../assets/burgers/burger_kentuki.png';
+import burgerChizImg from '../assets/burgers/burger_chiz.png';
+import sendvichPeperImg from '../assets/burgers/sendvich_peper.png';
+
+import chizkeykNewYorkImg from '../assets/desserts/chizkeyk_new_york.png';
+import chizkeykOreoImg from '../assets/desserts/chizkeyk_oreo.png';
+import cherryPaiImg from '../assets/desserts/cherry_pai.png';
+
+
 export const categoriesData = {
   'Основні страви': [
     {
@@ -5,7 +18,7 @@ export const categoriesData = {
       name: 'Карбонара',
       weight: '300 г',
       price: 164,
-      image: 'https://picsum.photos/200?random=1',
+      image: carbonaraImg,
       description: 'Паста зі смаженим беконом, чорним перцем, сиром та яйцем',
       ingredients: ['бекон', 'чорний перець', 'сир', 'яйце'],
       sauces: ['Соєвий соус (+5 ₴)']
@@ -15,7 +28,7 @@ export const categoriesData = {
       name: 'Різото',
       weight: '200 г',
       price: 124,
-      image: 'https://picsum.photos/200?random=2',
+      image: rizotoImg,
       description: 'Рис з морепродуктами та овочами',
       ingredients: ['морепродукти (креветка, кальмар, мідії)', 'овочі'],
       sauces: ['Соєвий соус (+5 ₴)']
@@ -25,7 +38,7 @@ export const categoriesData = {
       name: 'Соба з куркою',
       weight: '240 г',
       price: 150,
-      image: 'https://picsum.photos/200?random=3',
+      image: sobaImg,
       description: 'Гречана лапша, курка, овочі, кунжут',
       ingredients: ['курка', 'овочі (морква, болгарський перець)', 'кунжут'],
       sauces: ['Соєвий соус (+5 ₴)', 'Імбир (+5 ₴)', 'Васабі (+10 ₴)']
@@ -37,7 +50,7 @@ export const categoriesData = {
       name: 'Кентукі Бургер',
       weight: '290 г',
       price: 178,
-      image: 'https://picsum.photos/200?random=4',
+      image: burgerKentukiImg,
       description: 'Курячий бургер з сиром Моцарела, соусом "Медово-гірчичний" і свіжим яблуком',
       ingredients: ['курка', 'сир Моцарела', 'яблуко'],
       sauces: ['Картопля фрі (+40 ₴)', 'Соус Дорблю (+25 ₴)']
@@ -47,7 +60,7 @@ export const categoriesData = {
       name: 'Чізбургер',
       weight: '250 г',
       price: 197,
-      image: 'https://picsum.photos/200?random=5',
+      image: burgerChizImg,
       description: 'Яловичий бургер з сиром, салатом, огірком і цибулею',
       ingredients: ['котлета', 'салат', 'огірок', 'цибуля'],
       sauces: ['Картопля фрі (+40 ₴)', 'Соус Дорблю (+25 ₴)']
@@ -57,7 +70,7 @@ export const categoriesData = {
       name: 'Сендвіч Пепер Джек',
       weight: '280 г',
       price: 163,
-      image: 'https://picsum.photos/200?random=6',
+      image: sendvichPeperImg,
       description: 'З куркою в клярі, халапеньо, сиром, салатом Айсберг та соусом Барбекю',
       ingredients: ['курка', 'халапеньо', 'сир', 'салат Айсберг'],
       sauces: ['Картопля фрі (+40 ₴)', 'Соус Дорблю (+25 ₴)']
@@ -69,7 +82,7 @@ export const categoriesData = {
       name: 'Чізкейк Нью Йорк',
       weight: '120 г',
       price: 133,
-      image: 'https://picsum.photos/200?random=7',
+      image: chizkeykNewYorkImg,
       description: 'Класичний чізкейк з ванільним морозивом',
       ingredients: ['ванільне морозиво'],
       sauces: ['Шоколадний топінг (+15 ₴)', 'Карамельний топінг (+13 ₴)']
@@ -79,7 +92,7 @@ export const categoriesData = {
       name: 'Чізкейк Орео',
       weight: '120 г',
       price: 133,
-      image: 'https://picsum.photos/200?random=8',
+      image: chizkeykOreoImg,
       description: 'Чізкейк з печивом Орео та ванільним морозивом',
       ingredients: ['ванільне морозиво'],
       sauces: ['Шоколадний топінг (+15 ₴)', 'Карамельний топінг (+13 ₴)']
@@ -89,7 +102,7 @@ export const categoriesData = {
       name: 'Черрі Пай',
       weight: '120 г',
       price: 125,
-      image: 'https://picsum.photos/200?random=9',
+      image: cherryPaiImg,
       description: 'Шоколадний десерт з вишнею і сиром',
       ingredients: ['ванільне морозиво'],
       sauces: ['Шоколадний топінг (+15 ₴)', 'Карамельний топінг (+13 ₴)']

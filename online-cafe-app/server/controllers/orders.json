@@ -2,16 +2,45 @@
   {
     "items": [
       {
+        "name": "Різото",
+        "price": 124,
+        "ingredients": [
+          "морепродукти (креветка, кальмар, мідії)",
+          "овочі"
+        ],
+        "additions": [],
+        "quantity": 1,
+        "totalPrice": 124
+      }
+    ],
+    "totalPrice": 124
+  },
+  {
+    "items": [
+      {
         "name": "Чізкейк Орео",
         "price": 133,
         "ingredients": [
           "ванільне морозиво"
         ],
-        "additions": [],
+        "additions": [
+          "Шоколадний топінг",
+          "Карамельний топінг"
+        ],
         "quantity": 1,
-        "totalPrice": 133
+        "totalPrice": 161
+      },
+      {
+        "name": "Черрі Пай",
+        "price": 125,
+        "ingredients": [],
+        "additions": [
+          "Шоколадний топінг"
+        ],
+        "quantity": 1,
+        "totalPrice": 140
       }
     ],
-    "totalPrice": 133
+    "totalPrice": 301
   }
 ]

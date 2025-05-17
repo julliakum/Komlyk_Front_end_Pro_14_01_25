@@ -34,11 +34,10 @@ module.exports = {
         }
       },
       {
-        // 👈 добавлено правило для шрифтов bootstrap-icons
         test: /\.(woff(2)?|eot|ttf|otf)$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'fonts/[name][ext]' // ты можешь переименовать папку если хочешь
+          filename: 'fonts/[name][ext]'
         }
       }
     ]

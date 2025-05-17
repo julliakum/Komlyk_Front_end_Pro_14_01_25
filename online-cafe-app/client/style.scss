@@ -97,12 +97,12 @@ body {
 }
 
 .btn-close {
-  filter: none !important; // отключим инвертирование
-  color: #fff !important; // белый цвет
+  filter: none !important;
+  color: #fff !important;
   background-color: transparent !important;
   background-image: none !important;
   &::before {
-    content: '×'; // альтернатива — ручной крестик
+    content: '×';
     font-size: 1.5rem;
     line-height: 1;
   }

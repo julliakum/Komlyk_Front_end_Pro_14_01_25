@@ -63,20 +63,16 @@ body {
   color: #ffc107;
 }
 
-.btn-close {
-  filter: invert(1);
-}
-
 .btn-cart {
-  background-color: #ffc107;
-  color: #000;
+  background-color: #ffc107 !important;
+  color: #000 !important;
   font-weight: bold;
   border: none;
   transition: all 0.3s ease;
 }
 .btn-cart:hover {
-  background-color: #e0a800;
-  color: #000;
+  background-color: #e0a800 !important;
+  color: #000 !important;
 }
 .btn-cart i {
   margin-right: 5px;
@@ -89,4 +85,25 @@ body {
 
 .badge {
   font-size: 0.7rem;
+}
+
+
+.btn-cart:disabled {
+  background-color: #ffc107 !important;
+  color: #000 !important;
+  border: none !important;
+  opacity: 0.7 !important;
+  font-weight: bold !important;
+}
+
+.btn-close {
+  filter: none !important; // отключим инвертирование
+  color: #fff !important; // белый цвет
+  background-color: transparent !important;
+  background-image: none !important;
+  &::before {
+    content: '×'; // альтернатива — ручной крестик
+    font-size: 1.5rem;
+    line-height: 1;
+  }
 }

@@ -23,10 +23,22 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
+        test: /\.scss$/i,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+      {
         test: /\.(png|jpe?g|gif|svg)$/i,
         type: 'asset/resource',
         generator: {
           filename: 'images/[hash][ext][query]'
+        }
+      },
+      {
+        // 👈 добавлено правило для шрифтов bootstrap-icons
+        test: /\.(woff(2)?|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name][ext]' // ты можешь переименовать папку если хочешь
         }
       }
     ]

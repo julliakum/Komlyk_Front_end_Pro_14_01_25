@@ -245,3 +245,4 @@ window.confirmDelete = function (index) {
     deleteOrder(index);
   }
 };
+

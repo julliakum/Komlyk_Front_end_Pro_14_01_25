@@ -3,7 +3,7 @@ React-додаток, створений з використанням Vite.
 
 Як запустити додаток:
 Перейдіть в папку проєкту:
-cd HW39-react\vite-project
+cd HW41\smile-card
 
 Встановіть залежності:
 npm install
@@ -12,4 +12,4 @@ npm install
 npm run dev
 
 Відкрийте браузер і перейдіть за посиланням:
-http://localhost:5173# Front-end-Pro
+http://localhost:5173

@@ -40,7 +40,7 @@ export default function App() {
 
   return (
     <div className="app-container">
-      <h1>React Calculator</h1>
+      <h1>Calculator</h1>
       <div className="calculator">
         <Display value={input} />
         <div className="buttons">

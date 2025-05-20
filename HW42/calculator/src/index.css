@@ -28,3 +28,9 @@ button {
   padding: 1rem;
   font-size: 1.2rem;
 }
+
+.display-box {
+  height: 3rem;
+  font-size: 1.5rem;
+  background-color: white;
+}

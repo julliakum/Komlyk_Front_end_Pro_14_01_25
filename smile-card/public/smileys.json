@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "emoji": "😊",
+        "label": "Happy",
+        "votes": 0
+    },
+    {
+        "id": 2,
+        "emoji": "😂",
+        "label": "Funny",
+        "votes": 0
+    },
+    {
+        "id": 3,
+        "emoji": "😍",
+        "label": "Love",
+        "votes": 0
+    },
+    {
+        "id": 4,
+        "emoji": "🥹",
+        "label": "Happy",
+        "votes": 0
+    },
+    {
+        "id": 5,
+        "emoji": "👻",
+        "label": "Ghost",
+        "votes": 0
+    }
+]

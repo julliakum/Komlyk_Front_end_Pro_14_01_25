@@ -10,12 +10,15 @@ export default function AddContactForm({ onSave, onCancel }) {
     const newErrors = {};
     if (!firstName.trim()) newErrors.firstName = 'Імʼя обовʼязкове';
     if (!lastName.trim()) newErrors.lastName = 'Прізвище обовʼязкове';
-    if (!phone.trim()) {
-      newErrors.phone = 'Телефон обовʼязковий';
-    } else if (!/^\d{12}$/.test(phone)) {
-      newErrors.phone = 'Некоректний формат телефону';
+    if (!/^\d{12}$/.test(phone)) {
+      newErrors.phone = 'Номер телефону має містити 12 цифр';
     }
     return newErrors;
+  };
+
+  const handlePhoneChange = e => {
+    const digitsOnly = e.target.value.replace(/\D/g, '').slice(0, 12);
+    setPhone(digitsOnly);
   };
 
   const handleFormSubmit = event => {
@@ -68,7 +71,7 @@ export default function AddContactForm({ onSave, onCancel }) {
             placeholder="(38)XXX-XXX-XX-XX"
             className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
             value={phone}
-            onChange={e => setPhone(e.target.value)}
+            onChange={handlePhoneChange}
             required
           />
           {errors.phone && <div className="invalid-feedback">{errors.phone}</div>}

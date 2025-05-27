@@ -1,46 +1,59 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 
-export default function AddContactForm({ onSave, onCancel }) {
+export default function EditContactForm({ contacts, onSave }) {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const contact = contacts.find(c => c.id === Number(id));
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phone, setPhone] = useState('');
   const [errors, setErrors] = useState({});
 
+  useEffect(() => {
+    if (contact) {
+      setFirstName(contact.firstName);
+      setLastName(contact.lastName);
+      setPhone(contact.phone.replace(/\D/g, ''));
+    }
+  }, [contact]);
+
   const validate = () => {
     const newErrors = {};
     if (!firstName.trim()) newErrors.firstName = 'Імʼя обовʼязкове';
     if (!lastName.trim()) newErrors.lastName = 'Прізвище обовʼязкове';
-    if (!phone.trim()) {
-      newErrors.phone = 'Телефон обовʼязковий';
-    } else if (!/^\d{12}$/.test(phone)) {
-      newErrors.phone = 'Некоректний формат телефону';
+    if (!/^\d{12}$/.test(phone)) {
+      newErrors.phone = 'Номер телефону має містити 12 цифр';
     }
     return newErrors;
   };
 
-  const handleFormSubmit = event => {
-    event.preventDefault();
+  const handlePhoneChange = e => {
+    const digitsOnly = e.target.value.replace(/\D/g, '').slice(0, 12);
+    setPhone(digitsOnly);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length === 0) {
-      const newContact = { firstName, lastName, phone };
-      onSave(newContact);
-      setFirstName('');
-      setLastName('');
-      setPhone('');
+      onSave({ id: Number(id), firstName, lastName, phone });
       setErrors({});
     } else {
       setErrors(validationErrors);
     }
   };
 
+  if (!contact) return <p>Контакт не знайдено</p>;
+
   return (
     <div>
-      <h2>Додати контакт</h2>
-      <form onSubmit={handleFormSubmit}>
+      <h2>Редагувати контакт</h2>
+      <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label className="form-label">Імʼя</label>
           <input
-            type="text"
             className={`form-control ${errors.firstName ? 'is-invalid' : ''}`}
             value={firstName}
             onChange={e => setFirstName(e.target.value)}
@@ -48,11 +61,9 @@ export default function AddContactForm({ onSave, onCancel }) {
           />
           {errors.firstName && <div className="invalid-feedback">{errors.firstName}</div>}
         </div>
-
         <div className="mb-3">
           <label className="form-label">Прізвище</label>
           <input
-            type="text"
             className={`form-control ${errors.lastName ? 'is-invalid' : ''}`}
             value={lastName}
             onChange={e => setLastName(e.target.value)}
@@ -60,22 +71,20 @@ export default function AddContactForm({ onSave, onCancel }) {
           />
           {errors.lastName && <div className="invalid-feedback">{errors.lastName}</div>}
         </div>
-
         <div className="mb-3">
           <label className="form-label">Телефон</label>
           <input
             type="tel"
-            placeholder="(38)XXX-XXX-XX-XX"
             className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
+            placeholder="(38)XXX-XXX-XX-XX"
             value={phone}
-            onChange={e => setPhone(e.target.value)}
+            onChange={handlePhoneChange}
             required
           />
           {errors.phone && <div className="invalid-feedback">{errors.phone}</div>}
         </div>
-
-        <button type="submit" className="btn btn-success me-2">Зберегти</button>
-        <button type="button" className="btn btn-secondary" onClick={onCancel}>Скасувати</button>
+        <button type="submit" className="btn btn-primary me-2">Зберегти</button>
+        <button type="button" className="btn btn-secondary" onClick={() => navigate('/')}>Скасувати</button>
       </form>
     </div>
   );

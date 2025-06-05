@@ -1,10 +1,16 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addContact } from '../redux/contactsSlice';
+import { useNavigate } from 'react-router-dom';
+import { nanoid } from 'nanoid';
 
-export default function AddContactForm({ onSave, onCancel }) {
+export default function AddContactForm() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phone, setPhone] = useState('');
   const [errors, setErrors] = useState({});
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const validate = () => {
     const newErrors = {};
@@ -22,12 +28,8 @@ export default function AddContactForm({ onSave, onCancel }) {
     event.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length === 0) {
-      const newContact = { firstName, lastName, phone };
-      onSave(newContact);
-      setFirstName('');
-      setLastName('');
-      setPhone('');
-      setErrors({});
+      dispatch(addContact({ id: nanoid(), firstName, lastName, phone }));
+      navigate('/');
     } else {
       setErrors(validationErrors);
     }
@@ -44,7 +46,6 @@ export default function AddContactForm({ onSave, onCancel }) {
             className={`form-control ${errors.firstName ? 'is-invalid' : ''}`}
             value={firstName}
             onChange={e => setFirstName(e.target.value)}
-            required
           />
           {errors.firstName && <div className="invalid-feedback">{errors.firstName}</div>}
         </div>
@@ -56,7 +57,6 @@ export default function AddContactForm({ onSave, onCancel }) {
             className={`form-control ${errors.lastName ? 'is-invalid' : ''}`}
             value={lastName}
             onChange={e => setLastName(e.target.value)}
-            required
           />
           {errors.lastName && <div className="invalid-feedback">{errors.lastName}</div>}
         </div>
@@ -65,17 +65,16 @@ export default function AddContactForm({ onSave, onCancel }) {
           <label className="form-label">Телефон</label>
           <input
             type="tel"
-            placeholder="(38)XXX-XXX-XX-XX"
             className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
             value={phone}
             onChange={e => setPhone(e.target.value)}
-            required
+            placeholder="380XXXXXXXXX"
           />
           {errors.phone && <div className="invalid-feedback">{errors.phone}</div>}
         </div>
 
         <button type="submit" className="btn btn-success me-2">Зберегти</button>
-        <button type="button" className="btn btn-secondary" onClick={onCancel}>Скасувати</button>
+        <button type="button" className="btn btn-secondary" onClick={() => navigate('/')}>Скасувати</button>
       </form>
     </div>
   );

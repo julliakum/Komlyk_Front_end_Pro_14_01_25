@@ -1,10 +1,16 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateContact } from '../../redux/contactsSlice';
 
-export default function EditContactForm({ contacts, onSave }) {
+export default function EditContactForm() {
   const { id } = useParams();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const contact = contacts.find(c => c.id === Number(id));
+
+  const contact = useSelector(state =>
+    state.contacts.contacts.find(c => c.id === id || c.id === Number(id))
+  );
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -15,7 +21,7 @@ export default function EditContactForm({ contacts, onSave }) {
     if (contact) {
       setFirstName(contact.firstName);
       setLastName(contact.lastName);
-      setPhone(contact.phone.replace(/\D/g, ''));
+      setPhone(contact.phone);
     }
   }, [contact]);
 
@@ -29,17 +35,12 @@ export default function EditContactForm({ contacts, onSave }) {
     return newErrors;
   };
 
-  const handlePhoneChange = e => {
-    const digitsOnly = e.target.value.replace(/\D/g, '').slice(0, 12);
-    setPhone(digitsOnly);
-  };
-
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length === 0) {
-      onSave({ id: Number(id), firstName, lastName, phone });
-      setErrors({});
+      dispatch(updateContact({ id: contact.id, firstName, lastName, phone }));
+      navigate('/');
     } else {
       setErrors(validationErrors);
     }
@@ -57,7 +58,6 @@ export default function EditContactForm({ contacts, onSave }) {
             className={`form-control ${errors.firstName ? 'is-invalid' : ''}`}
             value={firstName}
             onChange={e => setFirstName(e.target.value)}
-            required
           />
           {errors.firstName && <div className="invalid-feedback">{errors.firstName}</div>}
         </div>
@@ -67,7 +67,6 @@ export default function EditContactForm({ contacts, onSave }) {
             className={`form-control ${errors.lastName ? 'is-invalid' : ''}`}
             value={lastName}
             onChange={e => setLastName(e.target.value)}
-            required
           />
           {errors.lastName && <div className="invalid-feedback">{errors.lastName}</div>}
         </div>
@@ -76,10 +75,9 @@ export default function EditContactForm({ contacts, onSave }) {
           <input
             type="tel"
             className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
-            placeholder="(38)XXX-XXX-XX-XX"
             value={phone}
-            onChange={handlePhoneChange}
-            required
+            onChange={e => setPhone(e.target.value)}
+            placeholder="380XXXXXXXXX"
           />
           {errors.phone && <div className="invalid-feedback">{errors.phone}</div>}
         </div>

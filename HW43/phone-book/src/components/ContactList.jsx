@@ -1,32 +1,49 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addContact, deleteContact } from '../redux/contactsSlice';
+import DeleteConfirmModal from './DeleteConfirmModal';
+import { nanoid } from 'nanoid';
 
 export default function ContactList() {
   const contacts = useSelector(state => state.contacts.contacts);
   const dispatch = useDispatch();
 
+  const [showModal, setShowModal] = useState(false);
+  const [contactToDelete, setContactToDelete] = useState(null);
+
   useEffect(() => {
     if (contacts.length === 0) {
       fetch('https://jsonplaceholder.typicode.com/users')
-        .then(response => response.json())
+        .then(res => res.json())
         .then(data => {
-          data.forEach(user => {
-            const newContact = {
-              id: String(user.id),
-              firstName: user.name.split(' ')[0],
-              lastName: user.name.split(' ')[1] || '',
-              phone: user.phone.replace(/\D/g, '').slice(0, 12),
-            };
-            dispatch(addContact(newContact));
-          });
+          const newContacts = data.map(user => ({
+            id: nanoid(),
+            firstName: user.name.split(' ')[0],
+            lastName: user.name.split(' ')[1] || '',
+            phone: user.phone.replace(/\D/g, '').slice(0, 12),
+          }));
+          newContacts.forEach(contact => dispatch(addContact(contact)));
         });
     }
   }, [contacts.length, dispatch]);
 
-  const handleDelete = (contactId) => {
-    dispatch(deleteContact(contactId));
+  const handleDeleteClick = (id) => {
+    setContactToDelete(id);
+    setShowModal(true);
+  };
+
+  const confirmDelete = () => {
+    if (contactToDelete) {
+      dispatch(deleteContact(contactToDelete));
+      setContactToDelete(null);
+      setShowModal(false);
+    }
+  };
+
+  const cancelDelete = () => {
+    setContactToDelete(null);
+    setShowModal(false);
   };
 
   return (
@@ -52,7 +69,7 @@ export default function ContactList() {
                   <Link to={`/edit/${contact.id}`} className="btn btn-warning btn-sm me-2">
                     Редагувати
                   </Link>
-                  <button className="btn btn-danger btn-sm" onClick={() => handleDelete(contact.id)}>
+                  <button className="btn btn-danger btn-sm" onClick={() => handleDeleteClick(contact.id)}>
                     Видалити
                   </button>
                 </td>
@@ -65,6 +82,13 @@ export default function ContactList() {
           )}
         </tbody>
       </table>
+
+{showModal && (
+  <DeleteConfirmModal
+    onConfirm={confirmDelete}
+    onCancel={cancelDelete}
+  />
+)}
     </div>
   );
 }

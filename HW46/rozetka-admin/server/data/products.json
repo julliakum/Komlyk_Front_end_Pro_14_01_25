@@ -1,0 +1,56 @@
+[
+  {
+    "id": "SI_XdAuwqzKQXsNoohcyZ",
+    "category": "Ноутбук",
+    "title": "Ноутбук Lenovo Y50-70 Aluminum Black",
+    "quantity": "5",
+    "price": "25000",
+    "description": "Потужний ноутбук з алюмінієвим корпусом, підходить для роботи та ігор.",
+    "photo": "/uploads/photo-1749454343977-936673030.jpg"
+  },
+  {
+    "id": "IyqzCaVgE8R38pPMG8WYf",
+    "category": "Ноутбук",
+    "title": "Ноутбук Lenovo Y50-70 Aluminum Black",
+    "quantity": "8",
+    "price": "24000",
+    "description": "Елегантний чорний дизайн та високопродуктивне залізо.",
+    "photo": "/uploads/photo-1749454343977-936673030.jpg"
+  },
+  {
+    "id": "sZF64eJlwvseg2ztgHiS6",
+    "category": "Ноутбук",
+    "title": "Ноутбук Lenovo Y50-40 Aluminum Black",
+    "quantity": "4",
+    "price": "24500",
+    "description": "Full HD дисплей, сучасний процесор, SSD-диск.",
+    "photo": "/uploads/photo-1749454343977-936673030.jpg"
+  },
+  {
+    "id": "axU5CL25UNiKS8olxVIKl",
+    "category": "Ноутбук",
+    "title": "Ноутбук Lenovo B60-70 Aluminum Black",
+    "quantity": "6",
+    "price": "20000",
+    "description": "Ідеальний для студентів і фахівців — швидкий та надійний.",
+    "photo": "/uploads/photo-1749454343977-936673030.jpg"
+  },
+  {
+    "id": "biA03bb9qNYxldaJ7Ldfj",
+    "category": "Ноутбук",
+    "title": "Ноутбук Lenovo B60-90 Aluminum Black",
+    "quantity": "3",
+    "price": "21000",
+    "description": "Підтримка новітніх технологій, USB 3.0, HDMI, Bluetooth.",
+    "photo": "/uploads/photo-1749454343977-936673030.jpg"
+  },
+  {
+    "id": "SWhcurcgbawNeWk9KaGAt",
+    "category": "Ноутбук",
+    "title": "Ноутбук Lenovo A50-70 Aluminum Black",
+    "quantity": "5",
+    "price": "27000",
+    "description": "Відмінна графіка та акумулятор до 6 годин автономної роботи.",
+    "photo": "/uploads/photo-1749454343977-936673030.jpg"
+  }
+]
